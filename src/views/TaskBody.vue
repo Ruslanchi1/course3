@@ -1,9 +1,8 @@
 <template >
-	<h3 class="text-white">Всего активных задач: 0</h3>
 	<div class="card">
 		<h2 class="card-title">
 			{{ title }}
-			<!-- <AppStatus :type="'done'" /> -->
+			<AppStatus :type="status" />
 		</h2>
 		<p>
 			<strong>
@@ -12,15 +11,16 @@
 				</small>
 			</strong>
 		</p>
-		<button class="btn primary">Посмотреть</button>
+		<button class="btn primary" @click="$router.push('/task/' + id)">Посмотреть</button>
 	</div>
 </template>
 
 <script>
 import { computed } from '@vue/reactivity'
+import AppStatus from '../components/AppStatus'
 
 export default {
-	props: ['title', 'date', 'description'],
+	props: ['title', 'date', 'description', 'id', 'status'],
 	setup(props) {
 		const title = computed( () => {
 			return props.title
@@ -31,12 +31,15 @@ export default {
 		const description = computed( () => {
 			return props.description
 		})
-		console.log(title);
+		
 		return {
 			title,
 			date,
 			description
 		}
+	},
+	components: {
+		AppStatus
 	}
 }
 </script>
