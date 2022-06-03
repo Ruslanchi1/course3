@@ -75,6 +75,15 @@ export const store = createStore({
 	getters: {
 		tasks(state) {
 			return state.tasks
+		},
+		activeTasks(_, { tasks }) {
+			let count = 0
+			for (const task of tasks) {
+				if (task.status === 'active') {
+					count++
+				}
+			}
+			return count
 		}
 	}
 })

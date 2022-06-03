@@ -1,6 +1,6 @@
 <template>
   <div v-if="tasks">
-	  <h3 class="text-white">Всего активных задач: 0</h3>
+	  <h3 class="text-white">Всего активных задач: {{$store.getters.activeTasks}}</h3>
 
     <task-body
       v-for="task in tasks" :key="task.id"
