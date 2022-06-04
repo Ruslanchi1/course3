@@ -19,7 +19,7 @@
 import { computed } from 'vue'
 import { mapActions, mapGetters, mapMutations, mapState, useStore } from 'vuex'
 import AppStatus from '../components/AppStatus'
-import TaskBody from './TaskBody'
+import TaskBody from '../components/TaskBody'
 
 export default {
   setup() {

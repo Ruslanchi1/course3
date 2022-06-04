@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+const database = 'https://course-work3-c4cd0-default-rtdb.firebaseio.com/tasks'
 
 export const store = createStore({
 	state() {
@@ -29,7 +30,7 @@ export const store = createStore({
 	actions: {
 		async createTask({ dispatch }, payload) {
 			try {
-				const response = await fetch('https://course-work3-c4cd0-default-rtdb.firebaseio.com/tasks.json', {
+				const response = await fetch(`${database}.json`, {
 					method: 'POST',
 					headers: {
 						"Content-type": "application/json",
@@ -43,7 +44,7 @@ export const store = createStore({
 		},
 		async loadTasks({ commit }) {
 			try {
-				const response = await fetch('https://course-work3-c4cd0-default-rtdb.firebaseio.com/tasks.json')
+				const response = await fetch(`${database}.json`)
 				const data = await response.json()
 				commit('addTasks', data)
 			} catch (e) {
@@ -52,8 +53,7 @@ export const store = createStore({
 		},
 		async changeStatus({ commit }, payload) {
 			try {
-				const response = await fetch(
-					`https://course-work3-c4cd0-default-rtdb.firebaseio.com/tasks/${payload.path}.json`, {
+				const response = await fetch(`${database}/${payload.path}.json`, {
 					method: 'PATCH',
 					headers: {
 						'Content-type': 'application/json'
